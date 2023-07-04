@@ -332,4 +332,3 @@ pub fn get_pci_irq_vector(bus: u8, device: u8, function: u8) -> Option<usize> {
 pub fn get_ecam_address() -> Option<u64> {
     unsafe { ACPI.get_ecam_address() }
 }
-
