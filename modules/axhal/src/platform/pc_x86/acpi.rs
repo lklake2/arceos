@@ -31,7 +31,7 @@ impl acpi::AcpiHandler for LocalAcpiHandler {
             NonNull::new_unchecked(vaddr as *mut i32 as *mut _),
             size,
             size,
-            self,
+            self.clone(),
         )
     }
     fn unmap_physical_region<T>(_region: &PhysicalMapping<Self, T>) {}
