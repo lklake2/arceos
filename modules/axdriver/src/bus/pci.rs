@@ -85,7 +85,7 @@ fn config_pci_device(
 impl AllDevices {
     pub(crate) fn probe_bus_devices(&mut self) {
         cfg_if::cfg_if! {
-            if #[cfg(target_arch = "x86_64")] {
+            if #[cfg(all(target_arch = "x86_64",feature = "axalloc"))] {
                 let pci_ecam_base = axhal::pci::get_ecam_address().unwrap();
             } else {
                 let pci_ecam_base = axconfig::PCI_ECAM_BASE.into();
