@@ -78,9 +78,10 @@ pub use self::platform::platform_init;
 #[cfg(feature = "smp")]
 pub use self::platform::platform_init_secondary;
 
+/// PCI operations
 pub mod pci {
-    #[cfg(all(target_arch = "x86_64",feature = "axalloc"))]
-    pub use crate::platform::acpi::{get_ecam_address};
-    #[cfg(all(target_arch = "x86_64",feature = "irq",feature = "axalloc"))]
-    pub use crate::platform::acpi::{get_pci_irq_vector};
+    #[cfg(all(target_arch = "x86_64", feature = "axalloc"))]
+    pub use crate::platform::acpi::get_ecam_address;
+    #[cfg(all(target_arch = "x86_64", feature = "irq", feature = "axalloc"))]
+    pub use crate::platform::acpi::get_pci_irq_vector;
 }
