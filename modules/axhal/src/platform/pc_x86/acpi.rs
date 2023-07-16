@@ -202,9 +202,9 @@ struct Acpi {
 /// irq model used in ACPI
 enum X86IrqModel {
     /// PIC model
-    PIC,
+    Pic,
     /// APIC model
-    APIC,
+    Apic,
 }
 
 impl Acpi {
@@ -223,7 +223,7 @@ impl Acpi {
         if self.aml_context.parse_table(slice).is_err() {
             return false;
         }
-        self.set_irq_model(X86IrqModel::APIC)
+        self.set_irq_model(X86IrqModel::Apic)
     }
 
     /// Set IRQ model that ACPI uses by invoking ACPI global method _PIC.
@@ -234,8 +234,8 @@ impl Acpi {
     /// We may need a lock for ACPI in the future as more ACPI state altering method implemented.
     fn set_irq_model(&mut self, irq_model: X86IrqModel) -> bool {
         let value = match irq_model {
-            X86IrqModel::PIC => 0,
-            X86IrqModel::APIC => 1,
+            X86IrqModel::Pic => 0,
+            X86IrqModel::Apic => 1,
         };
         let mut arg = aml::value::Args::EMPTY;
         if arg.store_arg(0, aml::AmlValue::Integer(value)).is_err() {
