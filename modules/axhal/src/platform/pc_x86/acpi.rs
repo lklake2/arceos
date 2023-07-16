@@ -200,7 +200,6 @@ struct Acpi {
 }
 
 /// irq model used in ACPI
-#[allow(dead_code)]
 enum X86IrqModel {
     /// PIC model
     PIC,
