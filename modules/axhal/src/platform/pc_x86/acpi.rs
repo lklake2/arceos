@@ -320,7 +320,6 @@ pub(crate) fn init() {
 
 /// Get PCI IRQ and map it to vector used in OS.
 /// Temporarily allow unused here because irq support for virtio hasn't ready yet.
-#[allow(dead_code)]
 #[cfg(feature = "irq")]
 pub fn get_pci_irq_vector(bus: u8, device: u8, function: u8) -> Option<usize> {
     unsafe { ACPI.get_pci_irq_desc(bus, device, function) }
@@ -329,5 +328,5 @@ pub fn get_pci_irq_vector(bus: u8, device: u8, function: u8) -> Option<usize> {
 
 /// Get PCIe ECAM space physical address.
 pub fn get_ecam_address() -> Option<PhysAddr> {
-    unsafe { ACPI.get_ecam_address() }.map(|ecam_addr| PhysAddr::from(ecam_addr))
+    unsafe { ACPI.get_ecam_address() }.map(|ecam_addr| PhysAddr::from(ecam_addr as usize))
 }
